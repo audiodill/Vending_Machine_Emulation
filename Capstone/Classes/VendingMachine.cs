@@ -11,7 +11,6 @@ namespace Capstone.Classes
         private decimal currentBalance;
         Dictionary<string, List<VMItem>> inventory = new Dictionary<string, List<VMItem>>();
         private VMFileReader inventorySource;
-        //
 
         public decimal CurrentBalance
         {
@@ -23,20 +22,20 @@ namespace Capstone.Classes
             get; //This may be where we define our slots
         }
 
-        public VendingMachine()
-        {
-            VMFileReader reader = new VMFileReader("vendingmachine.csv");
-            this.inventory = reader.GetInventory();
-        }
+        //public VendingMachine()
+        //{
+        //    VMFileReader reader = new VMFileReader("vendingmachine.csv");
+        //    this.inventory = reader.GetInventory();
+        //}
 
-        public VendingMachine(Dictionary<string, List<VendingMachine>> inventory)
+        public VendingMachine(Dictionary<string, List<VMItem>> inventory)
         {
-
+            this.inventory = inventory;
         }
 
         public void FeedMoney()
         {
-
+            this.currentBalance += currentBalance;
         }
 
         public VMItem GetItemAtSlot(string slotID)
@@ -47,6 +46,10 @@ namespace Capstone.Classes
 
         public int GetQuantityRemaining(string slotID)
         {
+            if (inventory.ContainsKey(slotID))
+            {
+                return inventory[slotID].Count;
+            }
             return 0;
         }
 

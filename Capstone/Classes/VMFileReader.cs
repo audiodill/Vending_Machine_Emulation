@@ -10,10 +10,9 @@ namespace Capstone.Classes
     public class VMFileReader
     {
         protected int Cost;
-        private string filepath;
         protected int InitialQuantity;
         protected int Product;
-        protected int SlotID;
+        protected string SlotID;
         string[] lineData = new string[3];
         Dictionary<string, List<VMItem>> inventory = new Dictionary<string, List<VMItem>>();
 
@@ -24,7 +23,7 @@ namespace Capstone.Classes
             filepath = Path.Combine(directory, filename);
             try
             {
-                
+
                 using (StreamReader sr = new StreamReader(filepath))
                 {
 
@@ -33,7 +32,7 @@ namespace Capstone.Classes
                         string nextLine = sr.ReadLine();
                         lineData = nextLine.Split('|');
                         List<VMItem> stock = new List<VMItem>();
-                        for(int i = 0; i < 5; i++)
+                        for (int i = 0; i < 5; i++)
                         {
                             stock.Add(CreateInitialInventory(lineData));
                         }
@@ -54,7 +53,7 @@ namespace Capstone.Classes
             if (lineData[0].Contains("A"))
             {
                 ChipItem chip = new ChipItem(lineData[1], Decimal.Parse(lineData[2]));
-                return chip;
+                SlotID = lineData[0];
             }
             else if (lineData[0].Contains("B"))
             {
