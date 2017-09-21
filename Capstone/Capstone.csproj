@@ -45,8 +45,11 @@
   <ItemGroup>
     <Compile Include="Classes\BeverageItem.cs" />
     <Compile Include="Classes\CandyItem.cs" />
+    <Compile Include="Classes\Change.cs" />
     <Compile Include="Classes\ChipItem.cs" />
     <Compile Include="Classes\GumItem.cs" />
+    <Compile Include="Classes\VendingMachine.cs" />
+    <Compile Include="Classes\VMFileReader.cs" />
     <Compile Include="Classes\VMItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
