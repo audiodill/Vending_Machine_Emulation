@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Capstone.Classes
+{
+    public class ChipItem : VMItem
+    {
+        public ChipItem(string itemName, decimal priceInCents) : base(itemName, priceInCents)
+        {
+            //still unsure of what to put here
+        }
+
+        public override string Consume()
+        {
+            return "Crunch Crunch, Yum!";
+        }
+    }
+}
