@@ -53,21 +53,23 @@ namespace Capstone.Classes
             if (lineData[0].Contains("A"))
             {
                 ChipItem chip = new ChipItem(lineData[1], Decimal.Parse(lineData[2]));
-                SlotID = lineData[0];
+                return chip;
             }
             else if (lineData[0].Contains("B"))
             {
                 CandyItem candy = new CandyItem(lineData[1], Decimal.Parse(lineData[2]));
+                return candy;
             }
             else if (lineData[0].Contains("C"))
             {
                 BeverageItem beverage = new BeverageItem(lineData[1], Decimal.Parse(lineData[2]));
+                return beverage;
             }
             else
             {
                 GumItem gum = new GumItem(lineData[1], Decimal.Parse(lineData[2]));
+                return gum;
             }
-            return null;
         }
 
         public Dictionary<string, List<VMItem>> GetInventory()

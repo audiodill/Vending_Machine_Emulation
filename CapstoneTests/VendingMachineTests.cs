@@ -29,5 +29,11 @@ namespace CapstoneTests
             int result = vend.GetQuantityRemaining("D4");
             Assert.AreEqual(5, result);
         }
+
+        [TestMethod]
+        public void TestToGetNameOfSlotID()
+        {
+            
+        }
     }
 }
