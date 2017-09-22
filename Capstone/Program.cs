@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Capstone.Classes;
+using System.IO;
 
 namespace Capstone
 {
@@ -14,9 +15,9 @@ namespace Capstone
         {
             VMFileReader stockInventory = new VMFileReader("vendingmachine.csv");
             Dictionary<string, List<VMItem>> inventory = stockInventory.GetInventory();
-            VendingMachine vend = new VendingMachine(inventory);
-            int result = vend.GetQuantityRemaining("A1");
-            Console.ReadLine();
+            VendingMachine vm = new VendingMachine(inventory);
+            WMCLI mainmenu = new WMCLI(vm);
+            mainmenu.Display();
         }
     }
 }

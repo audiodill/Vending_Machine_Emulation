@@ -19,8 +19,7 @@ namespace Capstone.Classes
         public VMFileReader(string filepath)
         {
             string directory = Directory.GetCurrentDirectory();
-            string filename = "vendingmachine.csv";
-            filepath = Path.Combine(directory, filename);
+            filepath = Path.Combine(directory, filepath);
             try
             {
 

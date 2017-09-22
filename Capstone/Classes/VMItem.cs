@@ -14,7 +14,7 @@ namespace Capstone.Classes
 
         public decimal Price
         {
-            get { return priceInCents; }
+            get { return priceInCents ; } 
         }
 
         public string ItemName

@@ -47,10 +47,16 @@
     <Compile Include="Classes\CandyItem.cs" />
     <Compile Include="Classes\Change.cs" />
     <Compile Include="Classes\ChipItem.cs" />
+    <Compile Include="Classes\InsufficientFundsException.cs" />
+    <Compile Include="Classes\InvalidSlotIDException.cs" />
+    <Compile Include="Classes\OutOfStockException.cs" />
+    <Compile Include="Classes\VendingMachineException.cs" />
     <Compile Include="Classes\GumItem.cs" />
     <Compile Include="Classes\VendingMachine.cs" />
+    <Compile Include="Classes\VMCLISubMenu.cs" />
     <Compile Include="Classes\VMFileReader.cs" />
     <Compile Include="Classes\VMItem.cs" />
+    <Compile Include="Classes\WMCLI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
