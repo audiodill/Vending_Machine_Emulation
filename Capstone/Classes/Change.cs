@@ -8,15 +8,19 @@ namespace Capstone.Classes
 {
     public class Change
     {
+        private decimal dimesValue = .10M;
+        private decimal nicklesValue = .5M;
+        private decimal quartersValue = .25M;
+        private int quarters;
         private int dimes;
         private int nickles;
-        private int quarters;
-        private double totalChange;
+        //private decimal totalChange;
+        //private int amountInCents;
 
-        public double TotalChange
-        {
-            get { return totalChange; }
-        }
+        //public decimal TotalChange
+        //{
+        //    get { return totalChange; }
+        //}
         
         public int Quarters
         {
@@ -33,19 +37,48 @@ namespace Capstone.Classes
             get { return dimes; }
         }
 
-        public Change(decimal amountInDollars)
+        public Change(decimal amountInCents)
         {
-            this.totalChange = Convert.ToDouble(amountInDollars) * 100; //unsure of order of operations or difference between both Change constructors
+
+            while(amountInCents / .25m >= 1)
+            {
+                quarters++;
+                amountInCents -= quartersValue;
+            }
+            while(amountInCents / .10m >= 1)
+            {
+                dimes++;
+                amountInCents -= dimesValue;
+            }
+            while(amountInCents / .5m > 1)
+            {
+                nickles++;
+                amountInCents -= nicklesValue;
+            }
+            
+            //this.totalChange = amountInCents;
+            //decimal remainder = totalChange % 25;
+            //quartersValue = amountInCents / 25;
+            //dimesValue = remainder / 10;
+            //remainder = remainder % 10;
+            //nicklesValue = remainder / 5;
+
+            //this.totalChange = amountInCents;
+            //int remainder = Convert.ToInt32(totalChange % 25);
+            //quarters = Convert.ToInt32(amountInCents / 25);
+            //dimes = Convert.ToInt32(remainder / 10);
+            //remainder = remainder % 10;
+            //nickles = Convert.ToInt32(remainder / 5);
+            
         }
 
-        public Change(int amountInCents)
-        {
-            this.totalChange = amountInCents;
-            int remainder = Convert.ToInt32(totalChange % 25);
-            quarters = Convert.ToInt32(amountInCents / 25);
-            dimes = Convert.ToInt32(remainder / 10);
-            remainder = remainder % 10;
-            nickles = Convert.ToInt32(remainder / 5);
-        }
+        //public Change(decimal amountInDollars)
+        //{
+        //    this.totalChange = Convert.ToInt32(amountInDollars) * 100;
+        //    amountInCents = Convert.ToInt32(amountInDollars);
+        //    //unsure of order of operations or difference between both Change constructors
+        //}
+
+        
     }
 }

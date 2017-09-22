@@ -11,7 +11,7 @@ namespace CapstoneTests
         VendingMachine vend;
         VMFileReader stockInventory;
         Dictionary<string, List<VMItem>> inventory;
-        string slotID;
+        //string slotID;
         
         [TestInitialize]
         public void Initialize()

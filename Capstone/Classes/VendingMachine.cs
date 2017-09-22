@@ -14,7 +14,7 @@ namespace Capstone.Classes
         private string[] slots;
         private decimal currentBalance;
         Dictionary<string, List<VMItem>> inventory = new Dictionary<string, List<VMItem>>();
-        private VMFileReader inventorySource;
+        //private VMFileReader inventorySource;
 
         public decimal CurrentBalance
         {
@@ -23,35 +23,17 @@ namespace Capstone.Classes
 
         public string[] Slots
         {
-            //foreach(VMItem KeyValuePair in  )
             get { return slots = this.inventory.Keys.ToArray();  }
-            ////{
-            ////    for(int i = 0; i < inventory.Count; i++)
-            //////    {
-            //////        Slots[i] = inventory.ContainsKey[i];
-            ////    }
-            //    //foreach (VMItem KeyValuePair in inventory)
-            //    //{
-            //    //    Slots[] = 
-            //    //}
-            //}
-
         }
-
-        //public VendingMachine()
-        //{
-        //    VMFileReader reader = new VMFileReader("vendingmachine.csv");
-        //    this.inventory = reader.GetInventory();
-        //}
 
         public VendingMachine(Dictionary<string, List<VMItem>> inventory)
         {
             this.inventory = inventory;
         }
 
-        public void FeedMoney()
+        public void FeedMoney(decimal money)
         {
-            this.currentBalance += currentBalance; //still unsure if not in 'amount in dollars'
+            this.currentBalance += money; //still unsure if not in 'amount in dollars'
         }
 
         public VMItem GetItemAtSlot(string slotID)
@@ -64,7 +46,6 @@ namespace Capstone.Classes
             {
                 return null;
             }
-            
         }
 
         public int GetQuantityRemaining(string slotID)
@@ -97,8 +78,8 @@ namespace Capstone.Classes
                 if(validSlot && enoughQuanity && enoughMoneyInMachine)
                 {
                     VMItem returnItemToCustomer =  inventory[slotID][0];
-                    inventory[slotID].RemoveAt(slotID[0]);
-                    currentBalance = currentBalance - inventory[slotID][1].Price;
+                    inventory[slotID].RemoveAt(0);
+                    currentBalance = currentBalance - returnItemToCustomer.Price;
                     return returnItemToCustomer;
 
                 }
@@ -113,35 +94,31 @@ namespace Capstone.Classes
                 if (!validSlot)
                 {
                     System.Exception newexe = new InvalidSlotIDException("You punched the wrong spot", ex);
+                    throw newexe;
                     
                 }
                 else if (!enoughQuanity)
                 {
                     Exception newexe = new OutOfStockException("Sold out!", ex);
+                    throw newexe;
                 }
                 else
                 {
                     Exception newexe = new InsufficientFundsException("Gimme moar moneys", ex);
+                    throw newexe;
                 }
-
             }
             finally
             {
                 // loop through CLI and stuff
             }
             return null;
-
-
-            
         }
 
         public Change ReturnChange()
         {
             Change amountInCents = new Change(currentBalance);
             return amountInCents;
-            // seems too easy >_>
-
-            
         }
     }
 }
