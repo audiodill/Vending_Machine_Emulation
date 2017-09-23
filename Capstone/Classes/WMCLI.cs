@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Capstone.Classes;
 using static Capstone.Classes.VMCLISubMenu;
+using System.IO;
 
 namespace Capstone.Classes
 {
@@ -25,22 +26,53 @@ namespace Capstone.Classes
 
         public void Display()
         {
+
             PrintHeader();
 
             while (true)
             {
+                string mainMenu = "MainMenu.txt";
+                string directory = Directory.GetCurrentDirectory();
+                mainMenu = Path.Combine(directory, mainMenu);
+                Console.ForegroundColor = ConsoleColor.Green;
+
+                using (StreamReader sr = new StreamReader(mainMenu))
+                {
+                    string nextLine = "";
+                    while (!sr.EndOfStream)
+                    {
+                        nextLine = sr.ReadLine();
+                        Console.WriteLine(nextLine);
+                    }
+                }
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine();
-                Console.WriteLine("Main Menu");
                 Console.WriteLine("1] >> Display Inventory");
                 Console.WriteLine("2] >> Purchase Item");
                 Console.WriteLine("Q] >> Quit");
-
+                Console.WriteLine();
                 Console.Write("What option do you want to select? ");
                 string input = Console.ReadLine().ToUpper();
 
                 if (input == "1")
                 {
-                    Console.WriteLine("Displaying Inventory");
+                    Console.WriteLine();
+                    string inventory = "Inventory.txt";
+                    directory = Directory.GetCurrentDirectory();
+                    mainMenu = Path.Combine(directory, inventory);
+
+                    using (StreamReader sr = new StreamReader(inventory))
+                    {
+                        string nextLine = "";
+                        while (!sr.EndOfStream)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            nextLine = sr.ReadLine();
+                            Console.WriteLine(nextLine);
+                        }
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    Console.WriteLine();
                     DisplayInventory();
                 }
                 else if (input == "2")
@@ -61,8 +93,21 @@ namespace Capstone.Classes
 
         private void PrintHeader()
         {
-
-            Console.WriteLine("WELCOME TO THE VEND-A-TRON1000");
+            string logoPath = "Logo.txt";
+            string directory = Directory.GetCurrentDirectory();
+            logoPath = Path.Combine(directory, logoPath);
+            Console.ForegroundColor = ConsoleColor.Green;
+            using (StreamReader sr = new StreamReader(logoPath))
+            {
+                string nextLine = "";
+                while (!sr.EndOfStream)
+                {
+                    nextLine = sr.ReadLine();
+                    Console.WriteLine(nextLine);
+                }
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            // Console.WriteLine("WELCOME TO THE VEND-A-TRON1000");
         }
         public void DisplayInvaidOption()
         {
@@ -79,11 +124,31 @@ namespace Capstone.Classes
         }
         public void DisplayPurchaseMenu()
         {
-            Console.WriteLine("Please insert necessary money");
+            Console.WriteLine();
+            Console.WriteLine();
+            string feedMoney = "FeedMoney.txt";
+            string directory = Directory.GetCurrentDirectory();
+            feedMoney = Path.Combine(directory, feedMoney);
+
+            using (StreamReader sr = new StreamReader(feedMoney))
+            {
+                string nextLine = "";
+                while (!sr.EndOfStream)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    nextLine = sr.ReadLine();
+                    Console.WriteLine(nextLine);
+                }
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            
+            Console.WriteLine();
             Console.WriteLine("1.] $1 ");
             Console.WriteLine("2.] $5 ");
             Console.WriteLine("3.] $10 ");
             Console.WriteLine("4.] $20");
+            Console.WriteLine();
+            Console.Write("We accept $1, $5, $10, or $20. ");
             InsertMoney = Console.ReadLine().ToUpper();
             if(InsertMoney == "1")
             {
@@ -101,7 +166,9 @@ namespace Capstone.Classes
             {
                 vm.FeedMoney(20);
             }
+            Console.WriteLine();
             Console.WriteLine("Your current balance is $" + vm.CurrentBalance);
+            Console.WriteLine();
             Console.Write("Please indicate ID of the item you wish to purchase: ");
             makeSelection = Console.ReadLine();
             VMItem item = vm.Purchase(makeSelection);
