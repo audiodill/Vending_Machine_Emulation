@@ -108,7 +108,7 @@ namespace Capstone.Classes
                         {
                             Console.WriteLine($"Your change is {vm.CurrentBalance}");
                             Console.WriteLine($"Your change consisits of {vm.ReturnChange().Quarters} Quarters {vm.ReturnChange().Dimes} Dimes and {vm.ReturnChange().Nickles} Nickles. ");
-                            Console.WriteLine("Your remaining vending machine balance is $0.00");
+                            Console.WriteLine("Your remaining vending machine balance is $0.00.");
                             GiveChangeAudit();
                             Environment.Exit(0);
                         }
@@ -266,7 +266,7 @@ namespace Capstone.Classes
             RecordFeedMoney = Path.Combine(directory, RecordFeedMoney);
             using (StreamWriter sw = new StreamWriter(RecordFeedMoney, true))
             {
-                sw.WriteLine($"{DateTime.UtcNow}    Feed Money:  {money.ToString().PadRight(10)}${vm.CurrentBalance.ToString().PadRight(10)}");
+                sw.WriteLine($"{DateTime.UtcNow}    Feed Money:    {money.ToString().PadRight(10)}${vm.CurrentBalance.ToString().PadRight(10)}");
             }
         }
 
@@ -277,7 +277,7 @@ namespace Capstone.Classes
             RecordFeedMoney = Path.Combine(directory, RecordFeedMoney);
             using (StreamWriter sw = new StreamWriter(RecordFeedMoney, true))
             {
-                sw.WriteLine($"{DateTime.UtcNow}    {ItemName}  ${Price.ToString().PadRight(10).PadLeft(4)}${vm.CurrentBalance.ToString().PadRight(10)}");
+                sw.WriteLine($"{DateTime.UtcNow}    {ItemName.PadRight(15)}  ${Price.ToString().PadRight(10).PadLeft(4)}${vm.CurrentBalance.ToString().PadRight(10)}");
             }
         }
 
@@ -289,7 +289,7 @@ namespace Capstone.Classes
             using (StreamWriter sw = new StreamWriter(RecordFeedMoney, true))
             {
                 sw.Write($"{DateTime.UtcNow}    ");
-                sw.Write("Give Change  ");
+                sw.Write("Give Change    ");
                 sw.Write("$" + vm.CurrentBalance.ToString().PadRight(10));
                 sw.WriteLine("$0.00".PadRight(10));
                 sw.WriteLine("End of Transaction session");
