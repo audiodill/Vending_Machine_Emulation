@@ -63,23 +63,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Classes\Log.txt" />
-    <Content Include="Classes\FeedMoney.txt">
+    <Content Include="TxtFiles\FeedMeMoney.txt" />
+    <Content Include="TxtFiles\Log.txt" />
+    <Content Include="TxtFiles\Inventory.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Classes\Inventory.txt">
+    <Content Include="TxtFiles\Logo.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Classes\Logo.txt">
+    <Content Include="TxtFiles\MainMenu.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Classes\MainMenu.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="TxtFiles\PurchaseMenu.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TxtFiles\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

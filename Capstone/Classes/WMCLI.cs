@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Capstone.Classes
 {
-    public class WMCLI
+    public class VMCLI
     {
         private string InsertMoney;
         private string makeSelection;
@@ -157,7 +157,7 @@ namespace Capstone.Classes
         public void DisplayPurchaseMenu()
         {
             Console.WriteLine();
-            string feedMoney = "FeedMoney.txt";
+            string feedMoney = "PurchaseMenu.txt";
             string directory = Directory.GetCurrentDirectory();
             feedMoney = Path.Combine(directory, feedMoney);
 
@@ -194,7 +194,7 @@ namespace Capstone.Classes
         {
             Console.WriteLine();
             Console.WriteLine();
-            string feedMoney = "FeedMoney.txt";
+            string feedMoney = "FeedMeMoney.txt";
             string directory = Directory.GetCurrentDirectory();
             feedMoney = Path.Combine(directory, feedMoney);
 
@@ -250,12 +250,12 @@ namespace Capstone.Classes
         {
 
         }
-        public WMCLI(VendingMachine vm)
+        public VMCLI(VendingMachine vm)
         {
             this.vm = vm;
         }
 
-        public WMCLI()
+        public VMCLI()
         {
         }
 

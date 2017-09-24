@@ -28,7 +28,7 @@ namespace Capstone
             VMFileReader stockInventory = new VMFileReader("vendingmachine.csv");
             Dictionary<string, List<VMItem>> inventory = stockInventory.GetInventory();
             VendingMachine vm = new VendingMachine(inventory);
-            WMCLI mainmenu = new WMCLI(vm);
+            VMCLI mainmenu = new VMCLI(vm);
             mainmenu.Display();
         }
     }
