@@ -14,13 +14,6 @@ namespace Capstone.Classes
         private int quarters;
         private int dimes;
         private int nickles;
-        //private decimal totalChange;
-        //private int amountInCents;
-
-        //public decimal TotalChange
-        //{
-        //    get { return totalChange; }
-        //}
         
         public int Quarters
         {
@@ -50,35 +43,11 @@ namespace Capstone.Classes
                 dimes++;
                 amountInCents -= dimesValue;
             }
-            while(amountInCents / .5m > 1)
+            if(amountInCents > 0)
             {
-                nickles++;
+                nickles = 1;
                 amountInCents -= nicklesValue;
             }
-            
-            //this.totalChange = amountInCents;
-            //decimal remainder = totalChange % 25;
-            //quartersValue = amountInCents / 25;
-            //dimesValue = remainder / 10;
-            //remainder = remainder % 10;
-            //nicklesValue = remainder / 5;
-
-            //this.totalChange = amountInCents;
-            //int remainder = Convert.ToInt32(totalChange % 25);
-            //quarters = Convert.ToInt32(amountInCents / 25);
-            //dimes = Convert.ToInt32(remainder / 10);
-            //remainder = remainder % 10;
-            //nickles = Convert.ToInt32(remainder / 5);
-            
         }
-
-        //public Change(decimal amountInDollars)
-        //{
-        //    this.totalChange = Convert.ToInt32(amountInDollars) * 100;
-        //    amountInCents = Convert.ToInt32(amountInDollars);
-        //    //unsure of order of operations or difference between both Change constructors
-        //}
-
-        
     }
 }

@@ -9,13 +9,9 @@ namespace Capstone.Classes
 {
     public class InsufficientFundsException : VendingMachineException
     {
-        private string v;
-        private Exception ex;
-
-        public InsufficientFundsException(string v, Exception ex)
+        public InsufficientFundsException(string message) : base(message)
         {
-            this.v = v;
-            this.ex = ex;
+
         }
     }
 }

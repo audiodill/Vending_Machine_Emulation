@@ -9,16 +9,10 @@ namespace Capstone.Classes
 {
     public class InvalidSlotIDException : VendingMachineException
     {
-        //whaaaat
-        private string v;
-        private Exception ex;
-
-        public InvalidSlotIDException(string v, Exception ex)
+        public InvalidSlotIDException(string message) : base(message)
         {
-            this.v = v;
-            this.ex = ex;
-        }
 
+        }
 
     }
 }

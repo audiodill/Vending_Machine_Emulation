@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using Capstone.Classes;
 
 namespace Capstone.Classes
 {
@@ -14,7 +16,6 @@ namespace Capstone.Classes
         private string[] slots;
         private decimal currentBalance;
         Dictionary<string, List<VMItem>> inventory = new Dictionary<string, List<VMItem>>();
-        //private VMFileReader inventorySource;
 
         public decimal CurrentBalance
         {
@@ -23,7 +24,7 @@ namespace Capstone.Classes
 
         public string[] Slots
         {
-            get { return slots = this.inventory.Keys.ToArray();  }
+            get { return slots = this.inventory.Keys.ToArray(); }
         }
 
         public VendingMachine(Dictionary<string, List<VMItem>> inventory)
@@ -33,7 +34,7 @@ namespace Capstone.Classes
 
         public void FeedMoney(decimal money)
         {
-            this.currentBalance += money; //still unsure if not in 'amount in dollars'
+            this.currentBalance += money; 
         }
 
         public VMItem GetItemAtSlot(string slotID)
@@ -61,56 +62,68 @@ namespace Capstone.Classes
         {
             try
             {
-                if (inventory.ContainsKey(slotID))
+                if (!inventory.ContainsKey(slotID))
+                {
+                    throw new InvalidSlotIDException("Error: You punched the wrong spot");
+                }
+                else if (inventory.ContainsKey(slotID))
                 {
                     validSlot = true;
-                    
                 }
-                if (inventory[slotID].Count > 0)
+            }
+            catch (InvalidSlotIDException ex)
+            {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(ex.Message);
+                Console.ForegroundColor = ConsoleColor.White;
+                return null;
+            }
+            try
+            {
+                if ((inventory[slotID].Count == 1))
+                {
+                    throw new OutOfStockException("Error: Sold Out");
+                }
+                else if (inventory[slotID].Count > 0)
                 {
                     enoughQuanity = true;
                 }
-                if (currentBalance > inventory[slotID][1].Price)
+            }
+            catch (OutOfStockException ex)
+            {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(ex.Message);
+                Console.ForegroundColor = ConsoleColor.White;
+                return null;
+            }
+            try
+            {
+                if (!(currentBalance > inventory[slotID][1].Price))
+                {
+                    throw new InsufficientFundsException("Error: Please insert more money");
+                }
+                else if (currentBalance > inventory[slotID][1].Price)
                 {
                     enoughMoneyInMachine = true;
                 }
-                
-                if(validSlot && enoughQuanity && enoughMoneyInMachine)
-                {
-                    VMItem returnItemToCustomer =  inventory[slotID][0];
-                    inventory[slotID].RemoveAt(0);
-                    currentBalance = currentBalance - returnItemToCustomer.Price;
-                    return returnItemToCustomer;
-
-                }
-                else
-                {
-                    // do nothing friend-o
-                }
-
             }
-            catch(Exception ex)
+            catch (InsufficientFundsException ex) when (!enoughMoneyInMachine)
             {
-                if (!validSlot)
-                {
-                    System.Exception newexe = new InvalidSlotIDException("You punched the wrong spot", ex);
-                    throw newexe;
-                    
-                }
-                else if (!enoughQuanity)
-                {
-                    Exception newexe = new OutOfStockException("Sold out!", ex);
-                    throw newexe;
-                }
-                else
-                {
-                    Exception newexe = new InsufficientFundsException("Gimme moar moneys", ex);
-                    throw newexe;
-                }
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(ex.Message);
+                Console.ForegroundColor = ConsoleColor.White;
+                return null;
             }
-            finally
+            if (validSlot && enoughQuanity && enoughMoneyInMachine)
             {
-                // loop through CLI and stuff
+                VMItem returnItemToCustomer = inventory[slotID][0];
+                inventory[slotID].RemoveAt(0);
+                currentBalance = currentBalance - returnItemToCustomer.Price;
+                return returnItemToCustomer;
+
             }
             return null;
         }

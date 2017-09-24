@@ -10,7 +10,7 @@ namespace Capstone.Classes
     {
         public BeverageItem(string itemName, decimal priceInCents) : base(itemName, priceInCents)
         {
-            //unsure of what to put
+            
         }
 
         public override string Consume()

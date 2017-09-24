@@ -9,13 +9,9 @@ namespace Capstone.Classes
 {
     public class OutOfStockException : VendingMachineException
     {
-        private string v;
-        private Exception ex;
-
-        public OutOfStockException(string v, Exception ex)
+        public OutOfStockException(string message) : base(message)
         {
-            this.v = v;
-            this.ex = ex;
+
         }
     }
 }

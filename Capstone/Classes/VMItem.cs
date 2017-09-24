@@ -22,12 +22,12 @@ namespace Capstone.Classes
             get { return itemName; }
         }
 
-        public VMItem(string itemName, decimal priceInCents) //constructer to be overwridden
+        public VMItem(string itemName, decimal priceInCents)
         {
             this.itemName = itemName;
             this.priceInCents = priceInCents;
         }
 
-        public abstract string Consume(); //abstract method being forced to subclass to be overwridden
+        public abstract string Consume(); 
     }
 }

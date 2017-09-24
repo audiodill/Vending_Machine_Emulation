@@ -10,7 +10,7 @@ namespace Capstone.Classes
     {
         public ChipItem(string itemName, decimal priceInCents) : base(itemName, priceInCents)
         {
-            //still unsure of what to put here
+            
         }
 
         public override string Consume()

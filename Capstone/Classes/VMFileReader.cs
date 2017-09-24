@@ -31,7 +31,7 @@ namespace Capstone.Classes
                         string nextLine = sr.ReadLine();
                         lineData = nextLine.Split('|');
                         List<VMItem> stock = new List<VMItem>();
-                        for (int i = 0; i < 5; i++)
+                        for (int i = 0; i < 6; i++)
                         {
                             stock.Add(CreateInitialInventory(lineData));
                         }
