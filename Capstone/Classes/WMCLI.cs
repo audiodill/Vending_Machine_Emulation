@@ -95,14 +95,14 @@ namespace Capstone.Classes
                         {
                             DisplayAddMoney();
                             DisplayPurchaseMenu();
-                            Console.WriteLine();
-                            Console.WriteLine("Would you like to make anonther purchase? ");
-                            Console.WriteLine();
-                            Console.WriteLine("1.] Purchase Menu ");
-                            Console.WriteLine("2.] Return to Main Menu ");
-                            Console.WriteLine("3.] Add More Money ");
-                            Console.WriteLine("4.] Quit and Return remaining change ");
-                            optionAfterConsume = Console.ReadLine();
+                            //Console.WriteLine();
+                            //Console.WriteLine("Would you like to make anonther purchase? ");
+                            //Console.WriteLine();
+                            //Console.WriteLine("1.] Purchase Menu ");
+                            //Console.WriteLine("2.] Return to Main Menu ");
+                            //Console.WriteLine("3.] Add More Money ");
+                            //Console.WriteLine("4.] Quit and Return remaining change ");
+                            //optionAfterConsume = Console.ReadLine();
                         }
                         else if (optionAfterConsume == "4")
                         {
@@ -266,7 +266,7 @@ namespace Capstone.Classes
             RecordFeedMoney = Path.Combine(directory, RecordFeedMoney);
             using (StreamWriter sw = new StreamWriter(RecordFeedMoney, true))
             {
-                sw.WriteLine($"{DateTime.UtcNow}    Feed Money:    {money.ToString().PadRight(10)}${vm.CurrentBalance.ToString().PadRight(10)}");
+                sw.WriteLine($"{DateTime.UtcNow}    Feed Money       {money.ToString().PadRight(10)}${vm.CurrentBalance.ToString().PadRight(11)}");
             }
         }
 
@@ -277,7 +277,7 @@ namespace Capstone.Classes
             RecordFeedMoney = Path.Combine(directory, RecordFeedMoney);
             using (StreamWriter sw = new StreamWriter(RecordFeedMoney, true))
             {
-                sw.WriteLine($"{DateTime.UtcNow}    {ItemName.PadRight(15)}  ${Price.ToString().PadRight(10).PadLeft(4)}${vm.CurrentBalance.ToString().PadRight(10)}");
+                sw.WriteLine($"{DateTime.UtcNow}    {ItemName.PadRight(15)}  ${Price.ToString().PadRight(10)}${vm.CurrentBalance.ToString().PadRight(10)}");
             }
         }
 
@@ -289,7 +289,7 @@ namespace Capstone.Classes
             using (StreamWriter sw = new StreamWriter(RecordFeedMoney, true))
             {
                 sw.Write($"{DateTime.UtcNow}    ");
-                sw.Write("Give Change    ");
+                sw.Write("Give Change      ");
                 sw.Write("$" + vm.CurrentBalance.ToString().PadRight(10));
                 sw.WriteLine("$0.00".PadRight(10));
                 sw.WriteLine("End of Transaction session");
