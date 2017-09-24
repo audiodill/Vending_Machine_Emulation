@@ -266,7 +266,7 @@ namespace Capstone.Classes
             RecordFeedMoney = Path.Combine(directory, RecordFeedMoney);
             using (StreamWriter sw = new StreamWriter(RecordFeedMoney, true))
             {
-                sw.WriteLine($"{DateTime.UtcNow}    Feed Money       {money.ToString().PadRight(10)}${vm.CurrentBalance.ToString().PadRight(11)}");
+                sw.WriteLine($"{DateTime.UtcNow}    Feed Money       {money.ToString().PadRight(10)}${vm.CurrentBalance.ToString().PadRight(12)}");
             }
         }
 

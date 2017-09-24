@@ -24,14 +24,14 @@ namespace CapstoneTests
         public void TestToGetInventoryCountOfA1()
         {
             int result = vend.GetQuantityRemaining("A1");
-            Assert.AreEqual(5, result);
+            Assert.AreEqual(5 + 1, result);
         }
 
         [TestMethod]
         public void TestToGetInventoryCountOfD4()
         {
             int result = vend.GetQuantityRemaining("D4");
-            Assert.AreEqual(5, result);
+            Assert.AreEqual(5 + 1, result);
         }
 
         [TestMethod]
@@ -47,12 +47,23 @@ namespace CapstoneTests
             decimal result = vend.GetItemAtSlot("A1").Price;
             Assert.AreEqual(3.05M, result);    // testing for a decimal
         }
+
         [TestMethod]
-        public void TestingToSeeIfMoneyFedIsBalance()
+        public void TestTheFeedMoneyMethod()
         {
-            decimal currentBalance = 5;
+            vend.FeedMoney(20);
+            double result =  Convert.ToDouble(vend.CurrentBalance);
+            Assert.AreEqual(20.00, result);
+        }
+
+        [TestMethod]
+        public void TestForPurchaseAccuracy()
+        {
+            vend.FeedMoney(20);
             vend.Purchase("A1");
-            Assert.AreEqual(195, currentBalance);
+            VMItem item = vend.Purchase("A1");
+            Assert.AreEqual(3.05M, item.Price);
+            Assert.AreEqual("Potato Crisps", item.ItemName);
         }
     }
 }

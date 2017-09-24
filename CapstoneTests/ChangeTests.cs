@@ -8,20 +8,9 @@ namespace CapstoneTests
     public class ChangeTests
     {
         [TestMethod]
-        public void TestConversionReturnsAsCents()
-        {
-            //Change x = new Change(1.00m);
-            Change y = new Change(100);
-            //decimal dollarsResult = x.TotalChange;
-            //decimal centsResult = y.TotalChange;
-            //Assert.AreEqual(100, dollarsResult);
-            //Assert.AreEqual(100, centsResult);
-        }
-
-        [TestMethod]
         public void TestForQuarters()
         {
-            Change x = new Change(115M);
+            Change x = new Change(1.15M);
             decimal result = x.Quarters;
             Assert.AreEqual(4, result);
         }
@@ -29,7 +18,7 @@ namespace CapstoneTests
         [TestMethod]
         public void TestForDimes()
         {
-            Change x = new Change(115M);
+            Change x = new Change(1.15M);
             decimal result = x.Dimes;
             Assert.AreEqual(1, result);
         }
@@ -37,7 +26,7 @@ namespace CapstoneTests
         [TestMethod]
         public void TestForNickles()
         {
-            Change x = new Change(115M);
+            Change x = new Change(1.15M);
             decimal result = x.Nickles;
             Assert.AreEqual(1, result);
         }
