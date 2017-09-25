@@ -150,7 +150,7 @@ namespace Capstone.Classes
             string[] slots = vm.Slots;
             for (int i = 0; i < slots.Length; i++)
             {
-                Console.WriteLine($" { slots[i]} ** {vm.GetQuantityRemaining(slots[i]).ToString()} ** {vm.GetItemAtSlot(slots[i]).Price} ** {vm.GetItemAtSlot(slots[i]).ItemName} ");
+                Console.WriteLine($" { slots[i]} ** {(vm.GetQuantityRemaining(slots[i]) - 1).ToString()} ** {vm.GetItemAtSlot(slots[i]).Price} ** {vm.GetItemAtSlot(slots[i]).ItemName} ");
             }
 
         }
