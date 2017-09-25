@@ -95,14 +95,6 @@ namespace Capstone.Classes
                         {
                             DisplayAddMoney();
                             DisplayPurchaseMenu();
-                            //Console.WriteLine();
-                            //Console.WriteLine("Would you like to make anonther purchase? ");
-                            //Console.WriteLine();
-                            //Console.WriteLine("1.] Purchase Menu ");
-                            //Console.WriteLine("2.] Return to Main Menu ");
-                            //Console.WriteLine("3.] Add More Money ");
-                            //Console.WriteLine("4.] Quit and Return remaining change ");
-                            //optionAfterConsume = Console.ReadLine();
                         }
                         else if (optionAfterConsume == "4")
                         {
