@@ -16,7 +16,7 @@ namespace Capstone.Classes
         protected decimal currentBalance = 0;
 
         protected VendingMachine vm;
-        
+
         public void Display()
         {
 
@@ -169,38 +169,41 @@ namespace Capstone.Classes
             Console.WriteLine();
             Console.Write("Please indicate the letter and number of the item you wish to purchase: ");
             makeSelection = Console.ReadLine().ToUpper();
-            VMItem item = vm.Purchase(makeSelection);
-            if (item == null)
+
+            try
             {
+                VMItem item = vm.Purchase(makeSelection);
+                PurchaseItemAudit(item.ItemName, item.Price);
+                //purchaseItemAudit
+                Console.WriteLine("Here is your " + item.ItemName + " " + item.Price);
+                Console.WriteLine($"Your current balance is {vm.CurrentBalance}");
+
+                Console.WriteLine(item.Consume());
+            }
+            catch (VendingMachineException ex)
+            {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(ex.Message);
+                Console.ForegroundColor = ConsoleColor.White;
                 Display();
             }
-            PurchaseItemAudit(item.ItemName, item.Price);
-            //purchaseItemAudit
-            Console.WriteLine("Here is your " + item.ItemName + " " + item.Price);
-            Console.WriteLine($"Your current balance is {vm.CurrentBalance}");
 
-            Console.WriteLine(item.Consume());
+
+
         }
-        
+
         public void DisplayAddMoney()
         {
             Console.WriteLine();
             Console.WriteLine();
-            string feedMoney = "FeedMeMoney.txt";
-            string directory = Directory.GetCurrentDirectory();
-            feedMoney = Path.Combine(directory, feedMoney);
 
-            using (StreamReader sr = new StreamReader(feedMoney))
-            {
-                string nextLine = "";
-                while (!sr.EndOfStream)
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    nextLine = sr.ReadLine();
-                    Console.WriteLine(nextLine);
-                }
-                Console.ForegroundColor = ConsoleColor.White;
-            }
+            MenuHeaderClass menuClass = new MenuHeaderClass();
+            string feedMoneyText = menuClass.GetAddMoneyHeader();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(feedMoneyText);
+            Console.ForegroundColor = ConsoleColor.White;            
 
             Console.WriteLine();
             Console.WriteLine("1.] $1 ");

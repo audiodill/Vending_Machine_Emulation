@@ -49,6 +49,7 @@
     <Compile Include="Classes\ChipItem.cs" />
     <Compile Include="Classes\InsufficientFundsException.cs" />
     <Compile Include="Classes\InvalidSlotIDException.cs" />
+    <Compile Include="Classes\MenuHeaderClass.cs" />
     <Compile Include="Classes\OutOfStockException.cs" />
     <Compile Include="Classes\VendingMachineException.cs" />
     <Compile Include="Classes\GumItem.cs" />

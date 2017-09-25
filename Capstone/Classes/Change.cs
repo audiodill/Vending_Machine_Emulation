@@ -8,9 +8,9 @@ namespace Capstone.Classes
 {
     public class Change
     {
-        private decimal dimesValue = .10M;
-        private decimal nicklesValue = .5M;
-        private decimal quartersValue = .25M;
+        private const decimal DimesValue = .10M;
+        private const decimal NicklesValue = .5M;
+        private const decimal QuartersValue = .25M;
         private int quarters;
         private int dimes;
         private int nickles;
@@ -33,20 +33,20 @@ namespace Capstone.Classes
         public Change(decimal amountInCents)
         {
 
-            while(amountInCents / .25m >= 1)
+            while(amountInCents / QuartersValue >= 1)
             {
                 quarters++;
-                amountInCents -= quartersValue;
+                amountInCents -= QuartersValue;
             }
-            while(amountInCents / .10m >= 1)
+            while(amountInCents / DimesValue >= 1)
             {
                 dimes++;
-                amountInCents -= dimesValue;
+                amountInCents -= DimesValue;
             }
             if(amountInCents > 0)
             {
                 nickles = 1;
-                amountInCents -= nicklesValue;
+                amountInCents -= NicklesValue;
             }
         }
     }

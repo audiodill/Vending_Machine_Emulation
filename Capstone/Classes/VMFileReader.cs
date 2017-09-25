@@ -9,10 +9,10 @@ namespace Capstone.Classes
 {
     public class VMFileReader
     {
-        protected int Cost;
+        private const int Cost = 2;
         protected int InitialQuantity;
-        protected int Product;
-        protected string SlotID;
+        private const int Product = 1;
+        private const int SlotID = 0;
         string[] lineData = new string[3];
         Dictionary<string, List<VMItem>> inventory = new Dictionary<string, List<VMItem>>();
 
@@ -31,11 +31,13 @@ namespace Capstone.Classes
                         string nextLine = sr.ReadLine();
                         lineData = nextLine.Split('|');
                         List<VMItem> stock = new List<VMItem>();
+
                         for (int i = 0; i < 6; i++)
                         {
                             stock.Add(CreateInitialInventory(lineData));
                         }
-                        inventory[lineData[0]] = stock;
+
+                        inventory[lineData[SlotID]] = stock;
                     }
 
                 }
@@ -51,22 +53,22 @@ namespace Capstone.Classes
         {
             if (lineData[0].Contains("A"))
             {
-                ChipItem chip = new ChipItem(lineData[1], Decimal.Parse(lineData[2]));
+                ChipItem chip = new ChipItem(lineData[Product], Decimal.Parse(lineData[Cost]));
                 return chip;
             }
             else if (lineData[0].Contains("B"))
             {
-                CandyItem candy = new CandyItem(lineData[1], Decimal.Parse(lineData[2]));
+                CandyItem candy = new CandyItem(lineData[Product], Decimal.Parse(lineData[Cost]));
                 return candy;
             }
             else if (lineData[0].Contains("C"))
             {
-                BeverageItem beverage = new BeverageItem(lineData[1], Decimal.Parse(lineData[2]));
+                BeverageItem beverage = new BeverageItem(lineData[Product], Decimal.Parse(lineData[Cost]));
                 return beverage;
             }
             else
             {
-                GumItem gum = new GumItem(lineData[1], Decimal.Parse(lineData[2]));
+                GumItem gum = new GumItem(lineData[Product], Decimal.Parse(lineData[Cost]));
                 return gum;
             }
         }

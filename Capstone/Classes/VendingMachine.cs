@@ -34,7 +34,7 @@ namespace Capstone.Classes
 
         public void FeedMoney(decimal money)
         {
-            this.currentBalance += money; 
+            this.currentBalance += money;
         }
 
         public VMItem GetItemAtSlot(string slotID)
@@ -60,72 +60,26 @@ namespace Capstone.Classes
 
         public VMItem Purchase(string slotID)
         {
-            try
+            if (!inventory.ContainsKey(slotID))
             {
-                if (!inventory.ContainsKey(slotID))
-                {
-                    throw new InvalidSlotIDException("Error: You punched the wrong spot");
-                }
-                else if (inventory.ContainsKey(slotID))
-                {
-                    validSlot = true;
-                }
+                throw new InvalidSlotIDException("Error: You punched the wrong spot");
             }
-            catch (InvalidSlotIDException ex)
-            {
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(ex.Message);
-                Console.ForegroundColor = ConsoleColor.White;
-                return null;
-            }
-            try
-            {
-                if ((inventory[slotID].Count == 1))
-                {
-                    throw new OutOfStockException("Error: Sold Out");
-                }
-                else if (inventory[slotID].Count > 0)
-                {
-                    enoughQuanity = true;
-                }
-            }
-            catch (OutOfStockException ex)
-            {
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(ex.Message);
-                Console.ForegroundColor = ConsoleColor.White;
-                return null;
-            }
-            try
-            {
-                if (!(currentBalance > inventory[slotID][1].Price))
-                {
-                    throw new InsufficientFundsException("Error: Please insert more money");
-                }
-                else if (currentBalance > inventory[slotID][1].Price)
-                {
-                    enoughMoneyInMachine = true;
-                }
-            }
-            catch (InsufficientFundsException ex) when (!enoughMoneyInMachine)
-            {
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(ex.Message);
-                Console.ForegroundColor = ConsoleColor.White;
-                return null;
-            }
-            if (validSlot && enoughQuanity && enoughMoneyInMachine)
-            {
-                VMItem returnItemToCustomer = inventory[slotID][0];
-                inventory[slotID].RemoveAt(0);
-                currentBalance = currentBalance - returnItemToCustomer.Price;
-                return returnItemToCustomer;
 
+            if ((inventory[slotID].Count == 1))
+            {
+                throw new OutOfStockException("Error: Sold Out");
             }
-            return null;
+
+            if (!(currentBalance > inventory[slotID][1].Price))
+            {
+                throw new InsufficientFundsException("Error: Please insert more money");
+            }
+
+
+            VMItem returnItemToCustomer = inventory[slotID][0];
+            inventory[slotID].RemoveAt(0);
+            currentBalance = currentBalance - returnItemToCustomer.Price;
+            return returnItemToCustomer;            
         }
 
         public Change ReturnChange()
